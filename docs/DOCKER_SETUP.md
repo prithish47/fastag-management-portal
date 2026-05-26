@@ -38,6 +38,7 @@ graph TD
 - **Port Mapping**: `8000:8000` (Exposed to Host)
 - **Restart Policy**: `unless-stopped`
 - **Dependency Handling**: Configured with a healthcheck-dependent wait state `service_healthy` on MySQL to prevent startup race conditions.
+- **Database Seeding & Migrations**: On container startup, the backend automatically runs `run_all_migrations.py` to create tables, run schema migrations, seed the initial Admin account (`admin@gitechnology.in` / password: `Admin@2026`), and seed 45 demo FASTags.
 
 ### 3. `fastag_mysql` (MySQL 8)
 - **Base Image**: `mysql:8`
