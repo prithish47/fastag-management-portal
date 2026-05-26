@@ -363,14 +363,21 @@ def update_rc_status(
             vehicle.fastag_status = "ACTIVE"
             # Assign FASTag automatically if not already assigned
             existing_tag = db.query(FastagInventory).filter(
-                FastagInventory.assigned_vehicle_id == vehicle_id,
-                FastagInventory.status.in_(["ASSIGNED", "ACTIVE"])
+                FastagInventory.assigned_vehicle_id == vehicle_id
             ).first()
 
             if existing_tag:
-                existing_tag.status = "ACTIVE"
-                existing_tag.last_assigned_at = datetime.now()
-            else:
+                # Reuse the existing valid tag safely, preserving its status if active or disabled
+                if existing_tag.status in ["ASSIGNED", "ACTIVE", "DISABLED"]:
+                    existing_tag.status = "ACTIVE"
+                    existing_tag.last_assigned_at = datetime.now()
+                # If the existing tag is invalid (e.g. BLACKLISTED, DAMAGED, REPLACED), unlink it first
+                elif existing_tag.status in ["BLACKLISTED", "DAMAGED", "REPLACED"]:
+                    existing_tag.assigned_vehicle_id = None
+                    db.flush() # Flush to release unique constraint before finding a new tag
+                    existing_tag = None
+            
+            if not existing_tag:
                 # Find available tag with matching vehicle class
                 new_tag = db.query(FastagInventory).filter(
                     FastagInventory.status == "UNASSIGNED",
@@ -408,6 +415,27 @@ def update_rc_status(
                         activity_message=f"FASTag ({new_tag.fastag_id}) automatically assigned and activated upon RC approval"
                     )
                     db.add(fastag_log)
+
+        elif payload.status == "REJECTED":
+            vehicle.fastag_status = "INACTIVE"
+            # Unlink any existing assigned FASTag if it exists
+            existing_tag = db.query(FastagInventory).filter(
+                FastagInventory.assigned_vehicle_id == vehicle_id
+            ).first()
+            if existing_tag:
+                # If it was a valid/active tag, release it back to inventory
+                if existing_tag.status in ["ASSIGNED", "ACTIVE", "DISABLED"]:
+                    existing_tag.status = "UNASSIGNED"
+                existing_tag.assigned_vehicle_id = None
+                existing_tag.last_assigned_at = None
+                
+                # Log the unlink activity
+                fastag_log = VehicleActivityLog(
+                    vehicle_id=vehicle_id,
+                    activity_type="FASTAG_UNLINKED",
+                    activity_message=f"FASTag ({existing_tag.fastag_id}) automatically unlinked and returned to inventory due to RC rejection"
+                )
+                db.add(fastag_log)
 
     log = VehicleActivityLog(
         vehicle_id=vehicle_id,

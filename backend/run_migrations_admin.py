@@ -132,8 +132,8 @@ def seed_fastag_inventory():
 
         vehicle_classes = ["VC4", "VC5", "VC6", "VC7", "VC12", "VC16"]
 
-        # Get existing vehicles to assign some tags
-        vehicles = db.query(Vehicle).all()
+        # Get existing vehicles to assign some tags (ONLY verified ones)
+        vehicles = db.query(Vehicle).filter(Vehicle.rc_verification_status == "VERIFIED").all()
         assigned_vehicle_ids = []
 
         # Status distribution: 20 unassigned, 10 assigned, 8 blacklisted, 5 damaged, 2 disabled
