@@ -319,7 +319,6 @@ Extensive documentation is maintained in the [`docs/`](docs/) directory:
 | [Data Flow Analysis](docs/DATA_FLOW_ANALYSIS.md) | End-to-end data flow for core operations |
 | [Workflow Documentation](docs/WORKFLOW_DOCUMENTATION.md) | User & admin workflow diagrams |
 | [Docker Setup](docs/DOCKER_SETUP.md) | Container configuration & troubleshooting |
-| [Dynamic Page Titles](docs/DYNAMIC_PAGE_TITLES_IMPLEMENTED.md) | Dynamic page title implementation details |
 | [Project Tree](docs/PROJECT_TREE.md) | Full project directory tree |
 
 ---
