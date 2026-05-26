@@ -1,0 +1,58 @@
+# Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+bin/
+include/
+lib/
+share/
+pyvenv.cfg
+
+# Node Modules
+node_modules/
+**/node_modules/
+
+# Local Environment/Secrets
+.env
+*.env
+.env.*
+!.env.example
+
+# Frontend build outputs
+frontend/dist/
+frontend/dist-ssr/
+
+# Python Cache & Logs
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+logs/
+backend/logs/
+
+# SQLite / Database
+*.db
+*.sqlite3
+
+# Uploaded assets & dynamic directories
+backend/uploads/
+uploads/
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+EHthumbs.db
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

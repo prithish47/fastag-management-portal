@@ -1,0 +1,39 @@
+version: '3.9'
+
+services:
+
+  backend:
+    build: ./backend
+    container_name: fastag_backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+    depends_on:
+      - mysql
+
+  frontend:
+    build: ./frontend
+    container_name: fastag_frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+  mysql:
+    image: mysql:8
+    container_name: fastag_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fastag_portal
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
