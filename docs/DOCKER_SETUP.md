@@ -109,3 +109,7 @@ If the backend cannot connect to MySQL, verify the environment variables loaded.
 ### 3. Docker build fails on dependencies
 - Ensure you have generated the `backend/requirements.txt` file (already completed during initial configuration).
 - If package installations fail, verify that your Docker runtime has network access to pull Node/Python modules.
+
+### 4. Cryptography package error (caching_sha2_password)
+- MySQL 8 uses `caching_sha2_password` as the default authentication mechanism. This requires the `cryptography` Python package on the client side (PyMySQL).
+- This dependency is pre-configured in `backend/requirements.txt`. If you run into authentication errors after changing DB configurations, rebuild the backend using `docker compose build --no-cache backend`.
