@@ -5,3 +5,6 @@ from .audit_log_model import AuditLog
 from .support_ticket_model import SupportTicket
 from .support_message_model import SupportMessage
 from .toll_crossing_model import TollCrossing
+from .transaction_model import Transaction
+from .notification_model import Notification
+from .activity_log_model import VehicleActivityLog
