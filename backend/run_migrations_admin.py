@@ -125,9 +125,9 @@ def seed_fastag_inventory():
     db = SessionLocal()
 
     try:
-        existing_count = db.query(FastagInventory).count()
-        if existing_count > 0:
-            print(f"[SKIP] FASTag inventory already has {existing_count} records")
+        has_existing = db.query(FastagInventory.id).first() is not None
+        if has_existing:
+            print("[SKIP] FASTag inventory already has seeded records")
             return
 
         vehicle_classes = ["VC4", "VC5", "VC6", "VC7", "VC12", "VC16"]
