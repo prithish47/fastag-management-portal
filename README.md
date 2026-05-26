@@ -351,11 +351,3 @@ This project is licensed under the **Mozilla Public License 2.0** — see the [L
 The MPL 2.0 is a permissive copyleft license that allows commercial use, modification, and distribution while requiring that modifications to MPL-covered files remain open source.
 
 ---
-
-<div align="center">
-
-**Built with ❤️ by [GI Technology](https://github.com/prithish47)**
-
-<img src="assets/imgs/GI_Technology.png" alt="GI Technology" width="100" />
-
-</div>
