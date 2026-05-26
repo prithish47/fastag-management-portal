@@ -18,7 +18,7 @@
 
 A comprehensive, secure, and fully containerized **FASTag Management Portal** designed for streamlined electronic toll collection operations. The platform ships with dual workflows — a **Customer Portal** for vehicle registration, wallet management, and toll simulation, and an **Admin Console** for oversight, approvals, auditing, and system integrity monitoring.
 
-[Getting Started](#-getting-started) · [Features](#-features) · [Tech Stack](#-tech-stack) · [Architecture](#-architecture) · [Documentation](#-documentation) · [Contributing](#-contributing) · [License](#-license)
+[Getting Started](#-getting-started) · [Features](#-features) · [Tech Stack](#-tech-stack) · [Architecture](#-architecture) · [Documentation](#-documentation) · [License](#-license)
 
 </div>
 
@@ -302,9 +302,6 @@ This platform is engineered with defense-in-depth principles:
 | **CORS** | Configurable cross-origin resource sharing middleware |
 | **Integrity Daemon** | Automated background checks for balance mismatches, duplicate serial numbers & negative balances |
 | **Audit Trail** | Comprehensive logging of all administrative actions and critical user events |
-| **OWASP Compliance** | Security hardening aligned with OWASP Top 10 guidelines |
-
-> For a full security deep-dive, see [`docs/SECURITY_REVIEW.md`](docs/SECURITY_REVIEW.md) and [`docs/OWASP_COMPLIANCE.md`](docs/OWASP_COMPLIANCE.md).
 
 ---
 
@@ -322,25 +319,8 @@ Extensive documentation is maintained in the [`docs/`](docs/) directory:
 | [Data Flow Analysis](docs/DATA_FLOW_ANALYSIS.md) | End-to-end data flow for core operations |
 | [Workflow Documentation](docs/WORKFLOW_DOCUMENTATION.md) | User & admin workflow diagrams |
 | [Docker Setup](docs/DOCKER_SETUP.md) | Container configuration & troubleshooting |
-| [Security Review](docs/SECURITY_REVIEW.md) | Threat modeling & vulnerability assessment |
-| [OWASP Compliance](docs/OWASP_COMPLIANCE.md) | OWASP Top 10 alignment report |
-| [Production Hardening](docs/PRODUCTION_HARDENING.md) | Production deployment best practices |
-| [Security Testing Guide](docs/SECURITY_TESTING_GUIDE.md) | Manual & automated security test procedures |
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
-
-> [!IMPORTANT]
-> Please ensure your code passes all existing tests and follows the project's established patterns before submitting a PR.
+| [Dynamic Page Titles](docs/DYNAMIC_PAGE_TITLES_IMPLEMENTED.md) | Dynamic page title implementation details |
+| [Project Tree](docs/PROJECT_TREE.md) | Full project directory tree |
 
 ---
 
